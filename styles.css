@@ -1,64 +1,175 @@
-/* =====================================================================
-   styles.css  ·  YOUR BRAND
-   ---------------------------------------------------------------------
-   This one file is your brand guide. Every page that links to it gets
-   the same font, the same colors and the same spacing.
-   Change a color here once, and every page changes.
 
-   Use the same font and colors you picked for your Excel menu images,
-   so the menu and the pages look like one brand.
-   ===================================================================== */
+/* ==========================================
+   THE BOOK UNIVERSE - WEBSITE STYLES
+   Author: Heath Pengilly Jr
+   BMIS 235 - HTML-3
+   ========================================== */
 
+/* Main website colors and fonts */
 body {
     font-family: Georgia, "Times New Roman", serif;
-    background-color: #f4efe6;
-    color: #2b2b2b;
+    background-color: #172033;
+    color: #292929;
     margin: 0;
-    padding: 0 20px 40px 20px;
+    padding: 0 0 30px 0;
+    line-height: 1.6;
 }
 
-/* the menu at the top of every page */
+/* Default accent colors */
+body {
+    --accent: #c49a45;
+    --accent-dark: #8e6925;
+}
+
+/* Individual page color themes */
+body.home-page {
+    --accent: #c49a45;
+    --accent-dark: #8e6925;
+}
+
+body.percy-page {
+    --accent: #247da5;
+    --accent-dark: #15516e;
+}
+
+body.redrising-page {
+    --accent: #a83232;
+    --accent-dark: #702020;
+}
+
+body.maze-page {
+    --accent: #537c54;
+    --accent-dark: #355338;
+}
+
+/* Navigation menu */
 nav {
-    background-color: #2b5d8c;
-    padding: 14px;
+    background-color: #101827;
+    padding: 16px;
     text-align: center;
+    border-bottom: 3px solid var(--accent);
 }
 
-/* every image inside the menu is forced to the same height.
-   If your images still look different sizes, their WIDTHS are
-   different: go back to Excel and make every cell the same size. */
 nav img {
-    height: 50px;
-    margin: 4px;
+    height: 55px;
+    width: auto;
+    margin: 5px 12px;
     vertical-align: middle;
+    border-radius: 5px;
+    transition: transform 0.2s ease;
 }
 
-/* no underline or border around the image links */
+nav img:hover {
+    transform: scale(1.1);
+}
+
 nav a {
     text-decoration: none;
 }
 
-h1 {
-    color: #2b5d8c;
-    text-align: center;
-    font-size: 40px;
+/* Main content area */
+main {
+    background-color: #f4efe6;
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 30px 45px;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
 }
 
+/* Main page titles */
+h1 {
+    color: var(--accent-dark);
+    text-align: center;
+    font-size: 38px;
+    line-height: 1.2;
+    margin: 15px 0 30px 0;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 15px;
+}
+
+/* Section headings */
+h2 {
+    color: var(--accent-dark);
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* Paragraph formatting */
 p {
-    max-width: 600px;
-    margin: 20px auto;
-    font-size: 18px;
-    line-height: 1.5;
+    max-width: 750px;
+    margin: 15px auto;
+    font-size: 17px;
+    line-height: 1.8;
 }
+
+/* Ordered list formatting */
 ol {
-   max-width:600px;
-   margin: 20px auto;
-   font-size: 18px;
-   line-height: 1.5:
+    max-width: 700px;
+    margin: 20px auto;
+    padding-left: 45px;
+    font-size: 17px;
+    line-height: 2;
 }
+
+/* Links within the page */
+main a {
+    color: var(--accent-dark);
+    font-weight: bold;
+}
+
+main a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* Footer */
 footer {
     text-align: center;
     font-size: 14px;
-    color: #777777;
-    margin-top: 40px;
+    color: #e9e3d8;
+    margin: 30px auto 10px auto;
+    padding: 15px;
+}
+
+footer a {
+    color: #e3bd70;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: white;
+}
+
+/* Keyboard accessibility */
+a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+/* Mobile device formatting */
+@media screen and (max-width: 650px) {
+
+    main {
+        margin: 20px 12px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 29px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    p, ol {
+        font-size: 16px;
+    }
+
+    nav img {
+        height: 40px;
+        margin: 5px;
+    }
 }
