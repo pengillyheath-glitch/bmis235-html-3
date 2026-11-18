@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<!--
+  Author: Heath Pengilly Jr
+  GU username: hpengilly@zagmail.gonzaga.edu
+  Course: BMIS 235 - HTML-3
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Heath Pengilly Jr">
+<title>The Book Universe - Home</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html"><img src="img/home.png" alt="Home"></a>
+    <a href="page1.html"><img src="img/page1.png" alt="Percy Jackson"></a>
+    <a href="page2.html"><img src="img/page2.png" alt="Red Rising"></a>
+    <a href="page3.html"><img src="img/page3.png" alt="Maze Runner"></a>
+</nav>
+
+<h1>The Book Universe</h1>
+
+<p>
+Welcome to The Book Universe! This website is dedicated to three of my
+favorite book series: Percy Jackson and the Olympians, Red Rising, and
+The Maze Runner. Each series has its own unique characters, worlds,
+and adventures that make them memorable.
+</p>
+
+<h2>My Favorite Book Series</h2>
+
+<ol>
+    <li>Percy Jackson and the Olympians by Rick Riordan</li>
+    <li>Red Rising by Pierce Brown</li>
+    <li>The Maze Runner by James Dashner</li>
+</ol>
+
+<h2>Why I Enjoy Reading</h2>
+
+<p>
+One of my favorite things about reading is being able to experience
+different worlds and follow characters through difficult challenges.
+These three series stand out because they combine adventure,
+suspense, interesting characters, and unexpected twists.
+</p>
+
+<h2>Explore the Three Universes</h2>
+
+<p>
+Use the menu above to explore each series, learn about its story,
+and discover what makes each one worth reading.
+</p>
+
+<div class="showcase">
+    <!-- Interactive quiz will go here in Part 7 -->
+</div>
+
+<footer>Built by Heath Pengilly Jr &middot; BMIS 235</footer>
+
+</body>
+</html>
