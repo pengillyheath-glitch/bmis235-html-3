@@ -25,21 +25,38 @@ body {
 body.home-page {
     --accent: #c49a45;
     --accent-dark: #8e6925;
+    --page-bg: #172033;
+    --content-bg: #f4efe6;
 }
 
 body.percy-page {
     --accent: #247da5;
     --accent-dark: #15516e;
+    --page-bg: #dceef5;
+    --content-bg: #f2f9fc;
 }
 
 body.redrising-page {
     --accent: #a83232;
     --accent-dark: #702020;
+    --page-bg: #f3dddd;
+    --content-bg: #fff5f3;
 }
 
 body.maze-page {
     --accent: #537c54;
     --accent-dark: #355338;
+    --page-bg: #e1eddf;
+    --content-bg: #f5faf3;
+}
+
+/* Apply the selected theme to the backgrounds */
+body {
+    background-color: var(--page-bg, #172033);
+}
+
+main {
+    background-color: var(--content-bg, #f4efe6);
 }
 
 /* Navigation menu */
