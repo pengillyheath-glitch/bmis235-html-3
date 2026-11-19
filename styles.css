@@ -1113,3 +1113,45 @@ button.book-cover {
         font-size: 9px;
     }
 }
+
+
+/* Keep the front cover hidden while the book is open.
+   The reverse side becomes a clean, readable "TAP TO CLOSE" panel. */
+.book.is-open button.book-cover {
+    transform: rotateY(-180deg) !important;
+    transform-style: preserve-3d !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    filter: none !important;
+}
+.book.is-open button.book-cover:hover,
+.book.is-open button.book-cover:focus-visible {
+    transform: rotateY(-180deg) !important;
+    filter: none !important;
+}
+.book.is-open button.book-cover .book-cover-inner {
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+}
+.book.is-open button.book-cover::after {
+    content: "TAP TO CLOSE" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    padding: 20px !important;
+    border: 6px solid #c49a45 !important;
+    border-radius: 5px 12px 12px 5px !important;
+    background:
+        radial-gradient(ellipse at center, rgba(196,154,69,.2), transparent 60%),
+        linear-gradient(135deg, #30496f 0%, #172744 48%, #0d1729 100%) !important;
+    color: #f0d18f !important;
+    font: bold 13px Georgia, "Times New Roman", serif !important;
+    letter-spacing: 2px !important;
+    text-shadow: none !important;
+    transform: rotateY(180deg) !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+}
