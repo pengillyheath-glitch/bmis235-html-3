@@ -10,7 +10,7 @@
 <meta name="author" content="Heath Pengilly Jr">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Book Universe - Home</title>
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body class="home-page">
 
@@ -83,42 +83,58 @@ and discover what makes each one worth reading.
                 </div>
 
                 <form id="book-quiz-form">
-                    <fieldset class="quiz-question">
+                    <div class="quiz-progress">
+                        <span id="quiz-progress-label">QUESTION 1 OF 5</span>
+                        <div class="quiz-progress-track"><span id="quiz-progress-fill"></span></div>
+                    </div>
+                    <div class="quiz-page" data-question="1">
+<fieldset class="quiz-question">
                         <legend>1. You discover a hidden door. What makes you open it?</legend>
                         <label><input type="radio" name="q1" value="percy" required> The chance that something legendary is waiting on the other side.</label>
                         <label><input type="radio" name="q1" value="red"> The possibility of uncovering a secret that could change everything.</label>
                         <label><input type="radio" name="q1" value="maze"> The need to find out what is beyond it, even if it is dangerous.</label>
                     </fieldset>
+                    </div>
 
-                    <fieldset class="quiz-question">
+                    <div class="quiz-page" hidden data-question="2">
+<fieldset class="quiz-question">
                         <legend>2. Your ideal story has a lot of...</legend>
                         <label><input type="radio" name="q2" value="percy" required> Mythology, humor, friendship, and impossible quests.</label>
                         <label><input type="radio" name="q2" value="red"> Big ambitions, tough choices, and unexpected alliances.</label>
                         <label><input type="radio" name="q2" value="maze"> Mystery, suspense, puzzles, and survival challenges.</label>
                     </fieldset>
+                    </div>
 
-                    <fieldset class="quiz-question">
+                    <div class="quiz-page" hidden data-question="3">
+<fieldset class="quiz-question">
                         <legend>3. Your group faces a challenge. What role do you take?</legend>
                         <label><input type="radio" name="q3" value="percy" required> Keep everyone together and find a creative way forward.</label>
                         <label><input type="radio" name="q3" value="red"> Build a strategy and take the lead when it matters.</label>
                         <label><input type="radio" name="q3" value="maze"> Explore the problem, notice details, and figure out an escape.</label>
                     </fieldset>
+                    </div>
 
-                    <fieldset class="quiz-question">
+                    <div class="quiz-page" hidden data-question="4">
+<fieldset class="quiz-question">
                         <legend>4. Which setting would you most want to explore?</legend>
                         <label><input type="radio" name="q4" value="percy" required> A world where ancient myths are part of modern life.</label>
                         <label><input type="radio" name="q4" value="red"> A futuristic society with impressive cities and hidden power struggles.</label>
                         <label><input type="radio" name="q4" value="maze"> A mysterious place full of clues and unexplored territory.</label>
                     </fieldset>
+                    </div>
 
-                    <fieldset class="quiz-question">
+                    <div class="quiz-page" hidden data-question="5">
+<fieldset class="quiz-question">
                         <legend>5. What keeps you turning the pages late at night?</legend>
                         <label><input type="radio" name="q5" value="percy" required> Characters I care about going on an unforgettable adventure.</label>
                         <label><input type="radio" name="q5" value="red"> High stakes and twists that make me rethink everything.</label>
                         <label><input type="radio" name="q5" value="maze"> A mystery I have to solve before I can put the book down.</label>
                     </fieldset>
-
-                    <button class="quiz-submit" type="submit">Reveal My Book Universe</button>
+                    </div>
+                    <div class="quiz-page-controls">
+                        <button class="quiz-back" id="quiz-back" type="button" disabled>Previous page</button>
+                        <span class="quiz-turn-hint">Choose an answer to turn the page</span>
+                    </div>
                 </form>
 
                 <section class="quiz-result" id="quiz-result" aria-live="polite" hidden>
@@ -163,6 +179,12 @@ and discover what makes each one worth reading.
     const resultDescription = document.getElementById("result-description");
     const resultLink = document.getElementById("result-link");
     const restartButton = document.getElementById("restart-quiz");
+    const pages = Array.from(document.querySelectorAll(".quiz-page"));
+    const progressLabel = document.getElementById("quiz-progress-label");
+    const progressFill = document.getElementById("quiz-progress-fill");
+    const backButton = document.getElementById("quiz-back");
+    let currentPage = 0;
+    let answers = {};
 
     const results = {
         percy: {
@@ -182,34 +204,22 @@ and discover what makes each one worth reading.
         }
     };
 
-    function toggleBook() {
-        const isOpening = !book.classList.contains("is-open");
-        book.classList.toggle("is-open", isOpening);
-        quizPanel.hidden = !isOpening;
-        openButton.setAttribute("aria-expanded", String(isOpening));
-        openButton.setAttribute(
-            "aria-label",
-            isOpening ? "Close the Book Universe quiz" : "Open the Book Universe quiz"
-        );
-
-        if (!isOpening) {
-            quizForm.reset();
-            quizForm.hidden = false;
-            resultPanel.hidden = true;
-        }
+    function showPage(index) {
+        currentPage = index;
+        pages.forEach(function (page, pageIndex) {
+            page.hidden = pageIndex !== index;
+            page.classList.toggle("page-enter", pageIndex === index);
+        });
+        progressLabel.textContent = "QUESTION " + (index + 1) + " OF " + pages.length;
+        progressFill.style.width = (((index + 1) / pages.length) * 100) + "%";
+        backButton.disabled = index === 0;
     }
 
-    openButton.addEventListener("click", toggleBook);
-
-    quizForm.addEventListener("submit", function (event) {
-        event.preventDefault();
+    function showResult() {
         const scores = { percy: 0, red: 0, maze: 0 };
-        const answers = new FormData(quizForm);
-
-        for (const answer of answers.values()) {
+        Object.values(answers).forEach(function (answer) {
             scores[answer] += 1;
-        }
-
+        });
         const highestScore = Math.max(scores.percy, scores.red, scores.maze);
         const winners = Object.keys(scores).filter(function (key) {
             return scores[key] === highestScore;
@@ -217,18 +227,57 @@ and discover what makes each one worth reading.
         const winner = winners[Math.floor(Math.random() * winners.length)];
         const result = results[winner];
 
+        progressLabel.textContent = "ADVENTURE COMPLETE";
+        progressFill.style.width = "100%";
+        quizForm.hidden = true;
         resultTitle.textContent = result.title;
         resultDescription.textContent = result.description;
         resultLink.href = result.link;
         resultPanel.hidden = false;
-        quizForm.hidden = true;
+    }
+
+    function resetQuiz() {
+        answers = {};
+        quizForm.reset();
+        quizForm.hidden = false;
+        resultPanel.hidden = true;
+        showPage(0);
+    }
+
+    function toggleBook() {
+        const isOpening = !book.classList.contains("is-open");
+        book.classList.toggle("is-open", isOpening);
+        quizPanel.hidden = !isOpening;
+        openButton.setAttribute("aria-expanded", String(isOpening));
+        openButton.setAttribute("aria-label",
+            isOpening ? "Close the Book Universe quiz" : "Open the Book Universe quiz");
+        if (!isOpening) resetQuiz();
+    }
+
+    openButton.addEventListener("click", toggleBook);
+
+    quizForm.addEventListener("change", function (event) {
+        const radio = event.target;
+        if (!radio.matches('input[type="radio"]')) return;
+        answers[radio.name] = radio.value;
+
+        if (currentPage < pages.length - 1) {
+            const next = currentPage + 1;
+            pages[currentPage].classList.add("page-leave");
+            window.setTimeout(function () {
+                showPage(next);
+            }, 220);
+        } else {
+            window.setTimeout(showResult, 220);
+        }
     });
 
-    restartButton.addEventListener("click", function () {
-        quizForm.reset();
-        resultPanel.hidden = true;
-        quizForm.hidden = false;
+    backButton.addEventListener("click", function () {
+        if (currentPage > 0) showPage(currentPage - 1);
     });
+
+    restartButton.addEventListener("click", resetQuiz);
+    showPage(0);
 }());
 </script>
 
