@@ -1155,3 +1155,21 @@ button.book-cover {
     -webkit-backface-visibility: hidden !important;
     backface-visibility: hidden !important;
 }
+
+
+/* Repair clickability of the reverse cover.
+   The button itself must remain hit-testable; hide only its front artwork. */
+.book.is-open button.book-cover {
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    pointer-events: auto !important;
+}
+.book.is-open button.book-cover .book-cover-inner {
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+}
+.book.is-open button.book-cover::after {
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    pointer-events: none !important;
+}
