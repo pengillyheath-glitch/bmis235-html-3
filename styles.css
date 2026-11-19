@@ -936,3 +936,34 @@ button.book-cover {
         font-size: 11px;
     }
 }
+
+
+/* Final open-state overrides: the closed cover is one leaf, not the full spread */
+.book.is-open {
+    width: 760px !important;
+    height: 530px !important;
+}
+.book.is-open button.book-cover {
+    width: 260px !important;
+    height: 100% !important;
+    transform: rotateY(-178deg) !important;
+    cursor: pointer !important;
+}
+.book.is-open .quiz-panel {
+    display: block;
+}
+@media screen and (max-width: 800px) {
+    .book.is-open {
+        width: min(100%, 560px) !important;
+        height: 590px !important;
+    }
+    .book.is-open button.book-cover {
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 650px) {
+    .book.is-open {
+        width: 100% !important;
+        height: 590px !important;
+    }
+}
