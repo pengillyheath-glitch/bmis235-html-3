@@ -10,7 +10,7 @@
 <meta name="author" content="Heath Pengilly Jr">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Book Universe - Home</title>
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body class="home-page">
 
@@ -64,80 +64,83 @@ and discover what makes each one worth reading.
 
     <div class="book-stage">
         <div class="book" id="quiz-book">
-            <div class="book-pages">
-                <span class="page-line"></span>
-                <span class="page-line"></span>
-                <span class="page-line"></span>
-                <span class="page-line"></span>
-                <span class="page-line"></span>
-                <span class="page-line"></span>
-                <span class="page-line"></span>
+            <div class="book-pages" aria-hidden="true">
+                <div class="left-page">
+                    <p class="page-small-title">THE BOOK UNIVERSE</p>
+                    <div class="page-star">✦</div>
+                    <h3>Your next adventure awaits.</h3>
+                    <p>Turn the page and answer five questions to discover which world matches your reading style.</p>
+                    <p class="page-signoff">Choose your path. Find your story.</p>
+                </div>
+                <div class="right-page"></div>
             </div>
+
+            <div class="quiz-panel" id="book-quiz" hidden>
+                <div class="quiz-panel-heading">
+                    <p class="eyebrow">YOUR ADVENTURE BEGINS</p>
+                    <h3>Which Book Universe Belongs to You?</h3>
+                    <p>Choose the answer that sounds most like you. There are no wrong answers.</p>
+                </div>
+
+                <form id="book-quiz-form">
+                    <fieldset class="quiz-question">
+                        <legend>1. You discover a hidden door. What makes you open it?</legend>
+                        <label><input type="radio" name="q1" value="percy" required> The chance that something legendary is waiting on the other side.</label>
+                        <label><input type="radio" name="q1" value="red"> The possibility of uncovering a secret that could change everything.</label>
+                        <label><input type="radio" name="q1" value="maze"> The need to find out what is beyond it, even if it is dangerous.</label>
+                    </fieldset>
+
+                    <fieldset class="quiz-question">
+                        <legend>2. Your ideal story has a lot of...</legend>
+                        <label><input type="radio" name="q2" value="percy" required> Mythology, humor, friendship, and impossible quests.</label>
+                        <label><input type="radio" name="q2" value="red"> Big ambitions, tough choices, and unexpected alliances.</label>
+                        <label><input type="radio" name="q2" value="maze"> Mystery, suspense, puzzles, and survival challenges.</label>
+                    </fieldset>
+
+                    <fieldset class="quiz-question">
+                        <legend>3. Your group faces a challenge. What role do you take?</legend>
+                        <label><input type="radio" name="q3" value="percy" required> Keep everyone together and find a creative way forward.</label>
+                        <label><input type="radio" name="q3" value="red"> Build a strategy and take the lead when it matters.</label>
+                        <label><input type="radio" name="q3" value="maze"> Explore the problem, notice details, and figure out an escape.</label>
+                    </fieldset>
+
+                    <fieldset class="quiz-question">
+                        <legend>4. Which setting would you most want to explore?</legend>
+                        <label><input type="radio" name="q4" value="percy" required> A world where ancient myths are part of modern life.</label>
+                        <label><input type="radio" name="q4" value="red"> A futuristic society with impressive cities and hidden power struggles.</label>
+                        <label><input type="radio" name="q4" value="maze"> A mysterious place full of clues and unexplored territory.</label>
+                    </fieldset>
+
+                    <fieldset class="quiz-question">
+                        <legend>5. What keeps you turning the pages late at night?</legend>
+                        <label><input type="radio" name="q5" value="percy" required> Characters I care about going on an unforgettable adventure.</label>
+                        <label><input type="radio" name="q5" value="red"> High stakes and twists that make me rethink everything.</label>
+                        <label><input type="radio" name="q5" value="maze"> A mystery I have to solve before I can put the book down.</label>
+                    </fieldset>
+
+                    <button class="quiz-submit" type="submit">Reveal My Book Universe</button>
+                </form>
+
+                <section class="quiz-result" id="quiz-result" aria-live="polite" hidden>
+                    <p class="eyebrow">YOUR BOOK UNIVERSE IS...</p>
+                    <h3 id="result-title"></h3>
+                    <p id="result-description"></p>
+                    <a id="result-link" class="result-link" href="#">Explore this series</a>
+                    <button class="quiz-restart" id="restart-quiz" type="button">Take the quiz again</button>
+                </section>
+            </div>
+
             <button class="book-cover" id="open-book" type="button"
-                    aria-expanded="false" aria-controls="book-quiz">
+                    aria-expanded="false" aria-controls="book-quiz"
+                    aria-label="Open the Book Universe quiz">
                 <span class="book-cover-inner">
                     <span class="book-kicker">A READING ADVENTURE</span>
                     <span class="book-title">THE BOOK<br>UNIVERSE</span>
                     <span class="book-ornament" aria-hidden="true">✦</span>
-                    <span class="book-instruction">CLICK TO OPEN</span>
+                    <span class="book-instruction">TAP TO OPEN</span>
                 </span>
             </button>
         </div>
-    </div>
-
-    <div class="quiz-panel" id="book-quiz" hidden>
-        <div class="quiz-panel-heading">
-            <p class="eyebrow">YOUR ADVENTURE BEGINS</p>
-            <h3>Which Book Universe Belongs to You?</h3>
-            <p>Choose the answer that sounds most like you. There are no wrong answers.</p>
-        </div>
-
-        <form id="book-quiz-form">
-            <fieldset class="quiz-question">
-                <legend>1. You discover a hidden door. What makes you open it?</legend>
-                <label><input type="radio" name="q1" value="percy" required> The chance that something legendary is waiting on the other side.</label>
-                <label><input type="radio" name="q1" value="red"> The possibility of uncovering a secret that could change everything.</label>
-                <label><input type="radio" name="q1" value="maze"> The need to find out what is beyond it, even if it is dangerous.</label>
-            </fieldset>
-
-            <fieldset class="quiz-question">
-                <legend>2. Your ideal story has a lot of...</legend>
-                <label><input type="radio" name="q2" value="percy" required> Mythology, humor, friendship, and impossible quests.</label>
-                <label><input type="radio" name="q2" value="red"> Big ambitions, tough choices, and unexpected alliances.</label>
-                <label><input type="radio" name="q2" value="maze"> Mystery, suspense, puzzles, and survival challenges.</label>
-            </fieldset>
-
-            <fieldset class="quiz-question">
-                <legend>3. Your group faces a challenge. What role do you take?</legend>
-                <label><input type="radio" name="q3" value="percy" required> Keep everyone together and find a creative way forward.</label>
-                <label><input type="radio" name="q3" value="red"> Build a strategy and take the lead when it matters.</label>
-                <label><input type="radio" name="q3" value="maze"> Explore the problem, notice details, and figure out an escape.</label>
-            </fieldset>
-
-            <fieldset class="quiz-question">
-                <legend>4. Which setting would you most want to explore?</legend>
-                <label><input type="radio" name="q4" value="percy" required> A world where ancient myths are part of modern life.</label>
-                <label><input type="radio" name="q4" value="red"> A futuristic society with impressive cities and hidden power struggles.</label>
-                <label><input type="radio" name="q4" value="maze"> A mysterious place full of clues and unexplored territory.</label>
-            </fieldset>
-
-            <fieldset class="quiz-question">
-                <legend>5. What keeps you turning the pages late at night?</legend>
-                <label><input type="radio" name="q5" value="percy" required> Characters I care about going on an unforgettable adventure.</label>
-                <label><input type="radio" name="q5" value="red"> High stakes and twists that make me rethink everything.</label>
-                <label><input type="radio" name="q5" value="maze"> A mystery I have to solve before I can put the book down.</label>
-            </fieldset>
-
-            <button class="quiz-submit" type="submit">Reveal My Book Universe</button>
-        </form>
-
-        <section class="quiz-result" id="quiz-result" aria-live="polite" hidden>
-            <p class="eyebrow">YOUR BOOK UNIVERSE IS...</p>
-            <h3 id="result-title"></h3>
-            <p id="result-description"></p>
-            <a id="result-link" class="result-link" href="#">Explore this series</a>
-            <button class="quiz-restart" id="restart-quiz" type="button">Take the quiz again</button>
-        </section>
     </div>
 </section>
 </main>
@@ -179,13 +182,24 @@ and discover what makes each one worth reading.
         }
     };
 
-    openButton.addEventListener("click", function () {
-        book.classList.add("is-open");
-        openButton.setAttribute("aria-expanded", "true");
-        openButton.setAttribute("aria-label", "Book opened");
-        quizPanel.hidden = false;
-        quizPanel.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    function toggleBook() {
+        const isOpening = !book.classList.contains("is-open");
+        book.classList.toggle("is-open", isOpening);
+        quizPanel.hidden = !isOpening;
+        openButton.setAttribute("aria-expanded", String(isOpening));
+        openButton.setAttribute(
+            "aria-label",
+            isOpening ? "Close the Book Universe quiz" : "Open the Book Universe quiz"
+        );
+
+        if (!isOpening) {
+            quizForm.reset();
+            quizForm.hidden = false;
+            resultPanel.hidden = true;
+        }
+    }
+
+    openButton.addEventListener("click", toggleBook);
 
     quizForm.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -208,14 +222,12 @@ and discover what makes each one worth reading.
         resultLink.href = result.link;
         resultPanel.hidden = false;
         quizForm.hidden = true;
-        resultPanel.scrollIntoView({ behavior: "smooth", block: "center" });
     });
 
     restartButton.addEventListener("click", function () {
         quizForm.reset();
         resultPanel.hidden = true;
         quizForm.hidden = false;
-        quizForm.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 }());
 </script>
