@@ -671,3 +671,268 @@ button.book-cover:hover {
         font-size: 24px !important;
     }
 }
+
+
+/* ==========================================
+   OPEN-BOOK QUIZ LAYOUT
+   Questions are printed on the right-hand page.
+   ========================================== */
+.quiz-experience {
+    overflow: visible;
+}
+.book-stage {
+    width: 100%;
+    min-height: 560px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    perspective: 1500px;
+    overflow: visible;
+    margin: 28px auto 10px;
+}
+.book {
+    position: relative;
+    width: 260px;
+    height: 360px;
+    margin: 15px auto;
+    flex: 0 0 auto;
+    transform-style: preserve-3d;
+    transition: width .9s ease, height .9s ease;
+    filter: drop-shadow(8px 12px 12px rgba(20,25,35,.25));
+}
+.book.is-open {
+    width: 760px;
+    height: 530px;
+}
+.book-pages {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    background: #fff9e9;
+    border: 2px solid #c8b994;
+    border-radius: 5px 10px 10px 5px;
+    box-sizing: border-box;
+    box-shadow: inset 0 0 18px rgba(100,75,35,.12);
+}
+.left-page {
+    position: relative;
+    box-sizing: border-box;
+    width: 260px;
+    flex: 0 0 260px;
+    height: 100%;
+    padding: 55px 25px 25px;
+    text-align: center;
+    color: #3b3428;
+    background: linear-gradient(90deg,#eee3cc,#fff9e9 12%,#f7efdE);
+    border-right: 1px solid #d2c3a4;
+}
+.left-page .page-small-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #8e6925;
+    font-weight: bold;
+}
+.left-page .page-star {
+    font-size: 38px;
+    color: #b48a3d;
+    margin: 35px 0 18px;
+}
+.left-page h3 {
+    color: #263b5d;
+    font-family: Georgia,serif;
+    font-size: 22px;
+    line-height: 1.3;
+}
+.left-page p {
+    font-size: 14px;
+    line-height: 1.7;
+}
+.left-page .page-signoff {
+    position: absolute;
+    bottom: 22px;
+    left: 15px;
+    right: 15px;
+    color: #8e6925;
+    font-style: italic;
+}
+.right-page {
+    flex: 1 1 auto;
+    min-width: 0;
+    background:
+        repeating-linear-gradient(to bottom, transparent 0, transparent 31px, rgba(173,151,112,.12) 32px),
+        #fffdf5;
+}
+button.book-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 260px;
+    height: 100%;
+    box-sizing: border-box;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    transition: transform 1.1s cubic-bezier(.2,.75,.25,1);
+    cursor: pointer;
+}
+.book-cover-inner {
+    backface-visibility: hidden;
+}
+.book.is-open button.book-cover {
+    transform: rotateY(-178deg);
+    cursor: pointer;
+}
+.book.is-open button.book-cover::after {
+    content: "TAP TO CLOSE";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f0d18f;
+    font: bold 12px Georgia,serif;
+    letter-spacing: 2px;
+    transform: rotateY(180deg);
+    backface-visibility: visible;
+}
+.quiz-panel {
+    position: absolute;
+    z-index: 2;
+    top: 15px;
+    left: 275px;
+    width: 470px;
+    height: 500px;
+    max-width: none;
+    box-sizing: border-box;
+    overflow-y: auto;
+    margin: 0;
+    padding: 22px 24px;
+    border: 0;
+    border-left: 1px solid #dfd1b5;
+    border-radius: 0;
+    background: rgba(255,253,245,.96);
+    box-shadow: none;
+    text-align: left;
+}
+.quiz-panel[hidden],
+.quiz-result[hidden],
+#book-quiz-form[hidden] {
+    display: none !important;
+}
+.quiz-panel-heading {
+    text-align: center;
+    margin-bottom: 14px;
+}
+.quiz-panel-heading h3 {
+    font-size: 21px;
+    line-height: 1.25;
+}
+.quiz-panel-heading p {
+    font-size: 13px;
+    line-height: 1.5;
+}
+.quiz-question {
+    padding: 10px 0;
+    border-top: 1px solid #e5dccb;
+}
+.quiz-question legend {
+    max-width: 100%;
+    padding-bottom: 5px;
+    color: #263b5d;
+    font-size: 14px;
+    line-height: 1.35;
+}
+.quiz-question label {
+    display: block !important;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    margin: 4px 0;
+    border: 1px solid #e7dfd0;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 1.35;
+    cursor: pointer;
+}
+.quiz-question label:hover {
+    background: #f5efdf;
+    border-color: #c49a45;
+}
+.quiz-question input[type="radio"] {
+    accent-color: #8e6925;
+    margin-right: 6px;
+}
+.quiz-submit,
+.quiz-restart {
+    display: block;
+    margin: 14px auto 5px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 5px;
+    background: #263b5d;
+    color: #fff8e8;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.quiz-result {
+    padding: 16px 12px;
+    background: #f8f1e4;
+    border: 1px solid #d8c69e;
+    border-radius: 7px;
+    text-align: center;
+}
+.quiz-result h3 {
+    font-size: 20px;
+}
+.quiz-result p:not(.eyebrow) {
+    font-size: 13px;
+}
+@media screen and (max-width: 800px) {
+    .book-stage {
+        min-height: 620px;
+    }
+    .book.is-open {
+        width: min(100%, 560px);
+        height: 590px;
+    }
+    .book.is-open .left-page {
+        display: none;
+    }
+    .book.is-open .quiz-panel {
+        left: 0;
+        top: 12px;
+        width: 100%;
+        height: 565px;
+        padding: 18px 16px;
+        border-left: 0;
+    }
+    .book.is-open button.book-cover {
+        width: 100%;
+    }
+    .book.is-open button.book-cover::after {
+        content: "TAP TO CLOSE";
+    }
+}
+@media screen and (max-width: 650px) {
+    .book-stage {
+        min-height: 620px;
+    }
+    .book.is-open {
+        width: 100%;
+        height: 590px;
+    }
+    .book.is-open .quiz-panel {
+        height: 565px;
+    }
+    .quiz-question legend {
+        font-size: 13px;
+    }
+    .quiz-question label {
+        font-size: 11px;
+    }
+}
