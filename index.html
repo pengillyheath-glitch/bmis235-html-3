@@ -10,7 +10,7 @@
 <meta name="author" content="Heath Pengilly Jr">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Book Universe - Home</title>
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body class="home-page">
 
@@ -207,8 +207,12 @@ and discover what makes each one worth reading.
     function showPage(index) {
         currentPage = index;
         pages.forEach(function (page, pageIndex) {
+            page.classList.remove("page-leave", "page-enter");
             page.hidden = pageIndex !== index;
-            page.classList.toggle("page-enter", pageIndex === index);
+            if (pageIndex === index) {
+                void page.offsetWidth;
+                page.classList.add("page-enter");
+            }
         });
         progressLabel.textContent = "QUESTION " + (index + 1) + " OF " + pages.length;
         progressFill.style.width = (((index + 1) / pages.length) * 100) + "%";
@@ -266,7 +270,7 @@ and discover what makes each one worth reading.
             pages[currentPage].classList.add("page-leave");
             window.setTimeout(function () {
                 showPage(next);
-            }, 220);
+            }, 180);
         } else {
             window.setTimeout(showResult, 220);
         }
