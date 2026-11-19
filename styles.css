@@ -1173,3 +1173,112 @@ button.book-cover {
     backface-visibility: hidden !important;
     pointer-events: none !important;
 }
+
+
+/* FINAL QUIZ PAGE LAYOUT FIXES
+   Keep navigation controls inside the visible page and reset page animations
+   when moving backward or forward so questions never remain transparent. */
+.book.is-open .quiz-panel {
+    box-sizing: border-box !important;
+    height: 500px !important;
+    overflow: hidden !important;
+    padding: 16px 22px 18px !important;
+}
+.book.is-open .quiz-panel-heading {
+    margin: 0 0 7px !important;
+}
+.book.is-open .quiz-panel-heading .eyebrow {
+    margin: 2px 0 4px !important;
+}
+.book.is-open .quiz-panel-heading h3 {
+    margin: 3px 0 5px !important;
+    font-size: 18px !important;
+}
+.book.is-open .quiz-panel-heading > p:not(.eyebrow) {
+    margin: 3px auto !important;
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+}
+.book.is-open #book-quiz-form {
+    position: relative !important;
+    height: 365px !important;
+    margin: 0 !important;
+    padding: 0 0 48px !important;
+    box-sizing: border-box !important;
+}
+.book.is-open .quiz-progress {
+    margin: 8px 0 12px !important;
+}
+.book.is-open .quiz-page {
+    min-height: 0 !important;
+    height: 250px !important;
+    padding: 3px 0 0 !important;
+    box-sizing: border-box !important;
+}
+.book.is-open .quiz-question {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.book.is-open .quiz-question legend {
+    margin-bottom: 9px !important;
+    padding-bottom: 8px !important;
+    font-size: 16px !important;
+}
+.book.is-open .quiz-question label {
+    margin: 7px 0 !important;
+    padding: 9px 9px !important;
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+}
+.book.is-open .quiz-page-controls {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    min-height: 38px !important;
+    box-sizing: border-box !important;
+    padding-top: 7px !important;
+    background: #fffdf5 !important;
+    z-index: 4 !important;
+}
+.book.is-open .quiz-result {
+    max-height: 340px !important;
+    overflow-y: auto !important;
+    margin-top: 10px !important;
+}
+.book.is-open .quiz-page[hidden] {
+    display: none !important;
+}
+.book.is-open .quiz-page.page-enter {
+    animation: pageTurnIn .28s ease both !important;
+}
+.book.is-open .quiz-page.page-leave {
+    animation: pageTurnOut .18s ease both !important;
+}
+@media screen and (max-width: 800px) {
+    .book.is-open .quiz-panel {
+        height: 565px !important;
+        padding: 18px 16px !important;
+    }
+    .book.is-open #book-quiz-form {
+        height: 430px !important;
+    }
+    .book.is-open .quiz-page {
+        height: 315px !important;
+    }
+}
+@media screen and (max-width: 650px) {
+    .book.is-open .quiz-panel {
+        height: 565px !important;
+        padding: 16px 13px !important;
+    }
+    .book.is-open #book-quiz-form {
+        height: 430px !important;
+    }
+    .book.is-open .quiz-page {
+        height: 315px !important;
+    }
+    .book.is-open .quiz-question label {
+        font-size: 11px !important;
+    }
+}
